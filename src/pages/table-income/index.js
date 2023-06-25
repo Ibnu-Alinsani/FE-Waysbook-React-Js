@@ -42,14 +42,21 @@ function TableIncome() {
                                 currency: "IDR",
                             }).format(item.total_payment)}
                         </td>
-                        :
+                        : item.status === "pending" ?
+                        <td className='text-warning text-center'>
+                            {new Intl.NumberFormat("id-ID", {
+                                style: "currency",
+                                currency: "IDR",
+                            }).format(item.total_payment)}
+                        </td>
+                         :
                         <td className='text-danger text-center'>
                             {new Intl.NumberFormat("id-ID", {
                                 style: "currency",
                                 currency: "IDR",
                             }).format(item.total_payment)}
                         </td>
-                        }                        
+                         }                        
                         {item.status === "success" ? <td className='text-success text-center'>Success</td> 
                         : 
                         item.status === "failed" ? <td className='text-danger text-center'>Failed</td>

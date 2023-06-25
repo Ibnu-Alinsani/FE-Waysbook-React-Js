@@ -112,6 +112,8 @@ function Home() {
         showConfirmButton: false,
         timer: 2000,
       });
+
+      window.location.reload()
     } catch (error) {
       Swal.fire({
         title: "Add Failed",

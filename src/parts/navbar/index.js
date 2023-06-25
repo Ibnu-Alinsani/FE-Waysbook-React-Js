@@ -81,7 +81,7 @@ function Header() {
                     <div className="d-flex gap-3 align-items-center">
                         <Link to="/cart" className="position-relative text-white">
                             <img src={IMG.Cart} alt="..." width="35px" height="32px"/>
-                            <p className="bg-danger rounded-circle border border-light px-1 position-absolute top-0 end-0" style={{fontSize:"10px"}}>0</p>
+                            <p className="bg-danger rounded-circle border border-light px-1 position-absolute top-0 end-0" style={{fontSize:"10px"}}>{state.user.cart_item.length > 0 ? state.user.cart_item.length : ""}</p>
                         </Link>
                         <NavDropdown title="Dropdown" id="collasible-nav-dropdown" align="end">
                             <NavDropdown.Item as={Link} to="/profile">

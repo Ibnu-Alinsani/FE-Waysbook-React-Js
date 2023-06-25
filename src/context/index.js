@@ -6,7 +6,7 @@ export const UserContext = createContext()
 export const initialState = {
     IsLogin : false,
     user: {},
-    Cart: 0
+    refetch: null
 }   
 
 const reducer = (state, action) => {
