@@ -10,7 +10,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
-  background-color: #e5e5e5;  
+  background-color: #e5e5e5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -20,10 +20,15 @@ code {
     monospace;
 }
 
-
 #collasible-nav-dropdown::after {
   display: none;
 }
 #collasible-nav-dropdown img {
   border-radius: 50%;
+}
+
+@media (max-width < 500px) {
+  .img-thumb {
+    width: "50%" !important;
+  }
 }
