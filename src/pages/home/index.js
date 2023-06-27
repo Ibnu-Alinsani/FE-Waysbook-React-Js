@@ -213,7 +213,7 @@ function Home() {
                       currency: "IDR",
                     }).format(book.price)}
                   </p>
-                  {book.transaction.filter((e) => e.user_id === state.user.id)
+                  {book.transaction && book.transaction?.filter((e) => e.status === "success" && e.user_id === state.user.id)
                     .length > 0 ? (
                     <Button
                       variant="dark"

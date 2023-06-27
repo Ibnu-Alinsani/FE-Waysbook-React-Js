@@ -59,7 +59,7 @@ function Income() {
                           lineHeight: "30px",
                         }}
                       >
-                        {item.title}
+                        {item.title.substr(0, 13)} ...
                       </b>
                       <small className="text-muted mt-2">
                         <i>{item.author}</i>
@@ -68,7 +68,7 @@ function Income() {
                         className="mt-3 text-success"
                         style={{ fontSize: "18px" }}
                       >
-                        Price :{" "}
+                        Price :{" "} <br/>
                         {new Intl.NumberFormat("id-ID", {
                           style: "currency",
                           currency: "IDR",
@@ -78,13 +78,13 @@ function Income() {
                         className="mt-2 text-success"
                         style={{ fontSize: "18px" }}
                       >
-                        Income :{" "}
+                        Income :{" "} <br/>
                         {new Intl.NumberFormat("id-ID", {
                           style: "currency",
                           currency: "IDR",
                         }).format(bookTotal)}
                       </b>
-                      <small className="mt-2">QTY : {qty}</small>
+                      <small className="mt-2 text-muted" style={{fontFamily: "Times New Roman"}}>QTY : {qty}</small>
                     </div>
                   </Link>
                 );

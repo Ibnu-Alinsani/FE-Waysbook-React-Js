@@ -49,6 +49,9 @@ function Login(props) {
             })
 
             // return <Navigate to="/" replace/>
+            setTimeout(() => {
+                window.location.reload()
+            }, 1000)
 
         } catch (err) {
             Swal.fire({

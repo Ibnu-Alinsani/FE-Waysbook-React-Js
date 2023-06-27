@@ -24,47 +24,44 @@ function TableIncome() {
                 <th className='text-danger text-center'>No</th>
                 <th className='text-danger'>Users</th>
                 <th className='text-danger'>Book Purchased</th>
-                <th className='text-danger text-center'>Total Payment</th>
+                <th className='text-danger'>Total Payment</th>
                 <th className='text-danger text-center'>Status Payment</th>
             </tr>
         </thead>
         <tbody>
             {
-                trans && trans.map((item, index) => (
-                    <tr key={index}>
-                        <td className='text-center'>{index + 1}</td>
-                        <td>{item.user.name}</td>
-                        <td style={{width: "500px"}}>{item.book.map(e => e.title).join(", ")}</td>
-                        {item.status === "success" ? 
-                        <td className='text-success text-center'>
-                            {new Intl.NumberFormat("id-ID", {
-                                style: "currency",
-                                currency: "IDR",
-                            }).format(item.total_payment)}
-                        </td>
-                        : item.status === "pending" ?
-                        <td className='text-warning text-center'>
-                            {new Intl.NumberFormat("id-ID", {
-                                style: "currency",
-                                currency: "IDR",
-                            }).format(item.total_payment)}
-                        </td>
-                         :
-                        <td className='text-danger text-center'>
-                            {new Intl.NumberFormat("id-ID", {
-                                style: "currency",
-                                currency: "IDR",
-                            }).format(item.total_payment)}
-                        </td>
-                         }                        
-                        {item.status === "success" ? <td className='text-success text-center'>Success</td> 
-                        : 
-                        item.status === "failed" ? <td className='text-danger text-center'>Failed</td>
-                        :
-                        <td className='text-warning text-center'>Pending</td>
-                        }   
-                    </tr>
-                ))
+                trans && trans.map((item, index) => {
+                    if (item.status === "success" || item.status === "failed") {
+                        return (
+                            <tr key={index}>
+                                <td className='text-center'>{index + 1}</td>
+                                <td>{item.user.name}</td>
+                                <td style={{width: "500px"}}>{item.book.map(e => e.title).join(", ")}</td>
+                                {item.status === "success" ? 
+                                <td className='text-success'>
+                                    {new Intl.NumberFormat("id-ID", {
+                                        style: "currency",
+                                        currency: "IDR",
+                                    }).format(item.total_payment)}
+                                </td>
+                                : <td className='text-danger'>
+                                    {new Intl.NumberFormat("id-ID", {
+                                        style: "currency",
+                                        currency: "IDR",
+                                    }).format(item.total_payment)}
+                                </td>
+                                }                        
+                                {item.status === "success" ? <td className='text-success text-center'>Success</td> 
+                                : 
+                                item.status === "failed" ? <td className='text-danger text-center'>Failed</td>
+                                :
+                                <td className='text-warning text-center'>Pending</td>
+                                }   
+                            </tr>
+                        )
+                    }
+                    
+                })
             }
         </tbody>
         </Table>

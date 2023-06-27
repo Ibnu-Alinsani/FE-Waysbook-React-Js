@@ -210,7 +210,7 @@ function DetailBook() {
       {book && (
         <>
           {state.user.role === "user" ? (
-            book.transaction.filter((item) => item.user_id === state.user.id)
+            book.transaction.filter((item) => item.status === "success" && item.user_id === state.user.id)
               .length > 0 ? (
               <Button
                 variant="dark"
@@ -269,51 +269,6 @@ function DetailBook() {
               />
             </Button>
           )}
-
-          {/* {state.user.role === "user" ? (
-            book.transaction.filter((item) => item.user_id === state.user.id)
-            .length > 0 ? (
-            <Button
-              variant="dark"
-              className="mt-5 rounded-0 position-absolute end-0 left-0 px-4"
-              onClick={() => downloadPdf(book.book_attachment)}
-            >
-              Download
-            </Button>
-          ) : state.user.role === "admin" ? (
-            <Button
-                variant="dark"
-                className="mt-5 rounded-0 position-absolute end-0 left-0"
-                onClick={(e) => AddCart.mutate(book.id)}
-              >
-                Add Cart
-                <img
-                  src={IMG.Cart2}
-                  alt="..."
-                  width="24"
-                  height="22"
-                  className="ms-2"
-                />
-            </Button>
-          ) : (
-            <div>
-              <Button
-                variant="dark"
-                className="mt-5 px-5 rounded-0 position-absolute end-0"
-                onClick={() => navigate(`/update-book/${book.id}`)}
-              >
-                Update
-              </Button>
-              <Button
-                variant="danger"
-                className="mt-5 px-5 rounded-0 position-absolute"
-                style={{ right: "20%" }}
-                onClick={() => deleteBook.mutate(book.id)}
-              >
-                Delete
-              </Button>
-            </div>
-          )) :} */}
         </>
       )}
     </Container>
