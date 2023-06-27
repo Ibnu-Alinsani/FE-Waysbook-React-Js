@@ -193,7 +193,7 @@ function Home() {
                       lineHeight: "15px",
                     }}
                   >
-                    {book.title}
+                    {book.title.substr(0, 15)} ...
                   </b>
                   <small className="d-block mb-3 text-muted">
                     <i>By. {book.author}</i>
@@ -202,7 +202,7 @@ function Home() {
                     className="mb-4"
                     style={{ lineHeight: "121,5%", fontSize: "14px" }}
                   >
-                    {book.description.substr(0, 16)} ...
+                    {book.description.substr(0, 70)}...
                   </p>
                   <p
                     className="mb-2 text-success fw-bold"

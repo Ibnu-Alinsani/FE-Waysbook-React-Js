@@ -97,34 +97,41 @@ function Profile() {
         <COMP.UpdateUser show={modalShow} onHide={() => setModalShow(false)}/>
     </Container>
     <Container fluid className="ps-4" style={{width:"1200px"}}>
-        <h1 style={{fontFamily:"Times New Roman"}} className="my-5 fw-bold">My Books</h1>
-        <Form.Control type="text" name="search" id="search" onChange={(e) => setSearch(e.target.value)} placeholder="Search your book"/>
-        <div className="w-100 d-flex flex-wrap mt-4" style={{gap:"2rem"}}>
-            {
-                 user?.transaction.map((item) => {
-                    if (item.status === "success") {
-                        return item.book.filter(e => {
-                            if (search === "") {
-                                return e
-                              } else if (e.title.toLowerCase().includes(search.toLowerCase())) {
-                                return e
-                              } else if (e.author.toLowerCase().includes(search.toLowerCase())) {
-                                return e
-                              } else if (e.isbn.toLowerCase().includes(search.toLowerCase())) {
-                                return e
-                              } 
-                        }).map((book, index) => (
-                            <div key={index} style={{width:"200px"}}>
-                                <img src={book.thumbnail} alt='...' width="200px" height="270px" className='object-fit-cover mb-3'/>
-                                <b className='mb-3' style={{fontSize:"24px", fontFamily:"Times New Roman", marginBottom:"0", lineHeight: "30px"}}>{book.title}</b>
-                                <i className="text-muted d-block mt-2 mb-3" style={{fontSize:"14px"}}>{book.author}</i>
-                                <Button variant="dark" className="rounded-0 w-100" onClick={() => downloadPdf(book.book_attachment)}>Download</Button>
-                            </div>
-                        ))
-                    }
-                })
-            }
-        </div>
+        {user?.transaction.length > 0 ? (
+            <>
+            <h1 style={{fontFamily:"Times New Roman"}} className="mt-5 mb-3 fw-bold">My Books</h1>
+            <Form.Control type="text" name="search" id="search" onChange={(e) => setSearch(e.target.value)} placeholder="Search your book"/>
+            <div className="w-100 d-flex flex-wrap mt-4" style={{gap:"2rem"}}>
+                { 
+                     user?.transaction.map((item) => {
+                        if (item.status === "success") {
+                            return item.book.filter(e => {
+                                if (search === "") {
+                                    return e
+                                  } else if (e.title.toLowerCase().includes(search.toLowerCase())) {
+                                    return e
+                                  } else if (e.author.toLowerCase().includes(search.toLowerCase())) {
+                                    return e
+                                  } else if (e.isbn.toLowerCase().includes(search.toLowerCase())) {
+                                    return e
+                                  } 
+                            }).map((book, index) => (
+                                <div key={index} style={{width:"200px"}}>
+                                    <img src={book.thumbnail} alt='...' width="200px" height="270px" className='object-fit-cover mb-3'/>
+                                    <b className='mb-3' style={{fontSize:"24px", fontFamily:"Times New Roman", marginBottom:"0", lineHeight: "30px"}}>{book.title.substr(0, 13)} ...</b>
+                                    <i className="text-muted d-block mt-2 mb-3" style={{fontSize:"14px"}}>{book.author}</i>
+                                    <Button variant="dark" className="rounded-0 w-100" onClick={() => downloadPdf(book.book_attachment)}>Download</Button>
+                                </div>
+                            ))
+                        }
+                    })}
+            </div>
+            </>
+        ) : (
+            <div className='border border-dark border-2 text-center w-50 mx-auto p-3 rounded-2'>
+                <h3 className='text-dark' style={{fontFamily:"Times New Roman"}}>You dont have a book</h3>
+            </div>
+        )}
     </Container>
     </div>
   )

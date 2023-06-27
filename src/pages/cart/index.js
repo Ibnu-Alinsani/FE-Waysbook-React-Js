@@ -69,6 +69,7 @@ function Cart() {
             window.snap.pay(token, {
                 onSuccess: function (result) {
                 console.log(result, "success");
+                window.location.reload()
                 navigate("/profile");
                 },
                 onPending: function (result) {

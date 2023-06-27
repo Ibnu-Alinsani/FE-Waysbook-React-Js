@@ -3,6 +3,7 @@ import { Form, Modal, Button } from "react-bootstrap"
 import { API } from "../../../config/api"
 import { useMutation } from "react-query"
 import { UserContext } from "../../../context"
+import { Navigate } from "react-router-dom"
 import Swal from "sweetalert2";
 
 function Login(props) {
@@ -46,6 +47,8 @@ function Login(props) {
                 email: "", 
                 password:""
             })
+
+            // return <Navigate to="/" replace/>
 
         } catch (err) {
             Swal.fire({
