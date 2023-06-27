@@ -5,8 +5,9 @@ import * as COMP from "../../component"
 import * as IMG from "../../assets"
 import {FallingLines} from 'react-loader-spinner'
 import { UserContext } from '../../context'
-import { useQuery } from 'react-query'
+import { notifyManager, useQuery } from 'react-query'
 import { API } from '../../config/api'
+import Swal from 'sweetalert2'
 
 function Profile() {
     document.title = "Your Profile"
@@ -39,7 +40,27 @@ function Profile() {
             document.body.appendChild(a);
             a.click();
             a.remove();
+            notif()
         })
+    }
+
+    async function notif() {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top',
+            iconColor: 'white',
+            customClass: {
+              popup: 'colored-toast'
+            },
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true
+          })
+        
+          await Toast.fire({
+          icon: 'info',
+          title: `Downloading`
+          })
     }
 
   return isLoading ? 

@@ -33,15 +33,22 @@ function Login(props) {
                 payload: response.data.data
             })
 
-            Swal.fire({
-                title: "Login Success",
-                text: `Welcome ${response.data.data.name}`,
-                icon: "success",
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top',
+                iconColor: 'white',
+                customClass: {
+                  popup: 'colored-toast'
+                },
                 showConfirmButton: false,
                 timer: 2000,
-            });
-
-            props.setmodal(false)
+                timerProgressBar: true
+              })
+            
+            await Toast.fire({
+            icon: 'success',
+            title: `Login Success, Welcome ${response.data.data.name}`
+            })            
 
             setForm({
                 email: "", 
@@ -50,6 +57,7 @@ function Login(props) {
 
             // return <Navigate to="/" replace/>
             setTimeout(() => {
+                props.setmodal(false)
                 window.location.reload()
             }, 1000)
 

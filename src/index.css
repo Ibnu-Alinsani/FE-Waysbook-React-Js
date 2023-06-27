@@ -26,6 +26,15 @@ code {
 #collasible-nav-dropdown img {
   border-radius: 50%;
 }
+.colored-toast.swal2-icon-info {
+  background-color: #3fc3ee !important;
+}
+.colored-toast.swal2-icon-success {
+  background-color: #a5dc86 !important;
+}
+.colored-toast.swal2-icon-error {
+  background-color: #f27474 !important;
+}
 
 @media (max-width < 500px) {
   .img-thumb {

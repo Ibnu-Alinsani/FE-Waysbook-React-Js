@@ -43,14 +43,7 @@ function DetailBook() {
       const response = await API.post("/cart", {
         book_id: e,
       });
-
-      Swal.fire({
-        title: "Add Success",
-        icon: "success",
-        showConfirmButton: false,
-        timer: 2000,
-      });
-
+      
       window.location.reload()
     } catch (error) {
       Swal.fire({
@@ -103,8 +96,30 @@ function DetailBook() {
         document.body.appendChild(a);
         a.click();
         a.remove();
+        notif()
       });
   };
+
+  async function notif() {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top',
+      iconColor: 'white',
+      customClass: {
+        popup: 'colored-toast'
+      },
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true
+    })
+
+    await Toast.fire({
+    icon: 'info',
+    title: `Downloading`
+    })
+  }
+
+  
 
   return isLoading ? (
     <Container

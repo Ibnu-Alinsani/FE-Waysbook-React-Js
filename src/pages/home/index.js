@@ -126,6 +126,39 @@ function Home() {
     }
   });
 
+  const downloadPdf = (url) => {
+    fetch(url).then(response => response.blob()).then(blob => {
+        const blobURL = window.URL.createObjectURL(new Blob([blob]));
+        const fileName = url.split("/").pop();
+        const a = document.createElement("a");
+        a.href = blobURL;
+        a.download = fileName;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        notif()
+    })
+}
+
+  async function notif() {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top',
+      iconColor: 'white',
+      customClass: {
+        popup: 'colored-toast'
+      },
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true
+    })
+
+    await Toast.fire({
+    icon: 'info',
+    title: `Downloading`
+    })
+  }
+
   return isLoading ? (
     <Container
       fluid
@@ -218,7 +251,7 @@ function Home() {
                     <Button
                       variant="dark"
                       className="rounded-0 w-100"
-                      onClick={(e) => AddCart.mutate(book.id)}
+                      onClick={() => downloadPdf(book.book_attachment)}
                     >
                       Download
                     </Button>

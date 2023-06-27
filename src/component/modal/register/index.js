@@ -26,15 +26,24 @@ function Register(props) {
     try {
         const response = await API.post("/register", form)
         props.setmodalregister(false)
-
-        Swal.fire({
-            title: "Register Success",
-            text: `Please Login, ${response.data.data.name}`,
-            icon: "success",
-            showConfirmButton: false,
-            timer: 2000,
-          });
+        
         props.setmodal(true)
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top',
+          iconColor: 'white',
+          customClass: {
+            popup: 'colored-toast'
+          },
+          showConfirmButton: false,
+          timer: 1500,
+          timerProgressBar: true
+        })
+      
+        await Toast.fire({
+        icon: 'success',
+        title: `Register Success`
+        })
     } catch (err) {
         Swal.fire({
           title: "Registrasi Error",
@@ -109,17 +118,19 @@ function Register(props) {
           <Form.Check
             name="gender"
             type="radio"
+            id="male"
             onChange={handleChange}
             value="male"
           />
-          <Form.Label className="me-4">Male</Form.Label>
+          <Form.Label className="me-4" for="male">Male</Form.Label>
           <Form.Check
             name="gender"
             type="radio"
+            id="female"
             onChange={handleChange}
             value="female"
           />
-          <Form.Label>Female</Form.Label>
+          <Form.Label for="female">Female</Form.Label>
         </Form.Group>
         <Form.Group className="mb-4">
           <Form.Control
