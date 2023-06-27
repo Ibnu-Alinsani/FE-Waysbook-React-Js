@@ -40,6 +40,7 @@ function Header() {
             type: "LOGOUT",
         })
 
+        window.location.reload()
         navigate("/")
     }
 
