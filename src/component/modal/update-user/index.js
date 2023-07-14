@@ -36,6 +36,7 @@ function UpdateUser(props) {
       }
 
     const handleSubmit = useMutation(async (e) => {
+        e.preventDefault()
         try {
             const config = {
                 headers: {
