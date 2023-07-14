@@ -107,7 +107,7 @@ function Profile() {
                     </div>
                 </div>
             </div>
-            <div className='d-flex flex-column' style={{minWidth:"226px", minHeight:"202px"}}>
+            <div className='d-flex flex-column' style={{width:"226px", minHeight:"202px"}}>
                 <img src={state.user.avatar !== "" ? state.user.avatar : IMG.Male} alt="..." width="100%" height="100%" className='object-fit-contain mb-2 rounded-2'/>
                 <Button variant="danger" className='w-50' onClick={() => setModalShow(true)}>Edit Profile</Button>
             </div>
