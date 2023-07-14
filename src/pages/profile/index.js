@@ -24,8 +24,6 @@ function Profile() {
         return response.data.data
     })
 
-    console.log(user)
-
     react.useEffect(() => {
         refetch()
     }, [])
@@ -111,7 +109,7 @@ function Profile() {
             </div>
             <div className='d-flex flex-column' style={{minWidth:"226px", minHeight:"202px"}}>
                 <img src={state.user.avatar !== "" ? state.user.avatar : IMG.Male} alt="..." width="100%" height="100%" className='object-fit-contain mb-2 rounded-2'/>
-                <Button variant="danger" className='w-100' onClick={() => setModalShow(true)}>Edit Profile</Button>
+                <Button variant="danger" className='w-50' onClick={() => setModalShow(true)}>Edit Profile</Button>
             </div>
         </div>
 
